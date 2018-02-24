@@ -21,11 +21,11 @@ sh bootstrap.sh 项目名 deploy  [目录全路径(非必填，主要和push命�
 重启 web 容器
 usage：
 sh bootstrap.sh 项目名 restart
-5）backup
+5) backup
 备份当前项目
 usage：
 sh bootstrap.sh 项目名 backup
-6）rollback
+6) rollback
 根据项目的历史备份进行版本回滚
 usage：
 sh bootstrap.sh 项目名 rollback 数字(比如1代表最后一次备份版本，2代表倒数第二次备份版本，以此类推...)
@@ -35,9 +35,9 @@ sh bootstrap.sh 项目名 rollback 数字(比如1代表最后一次备份版本�
 2. APPS数组 代表具体要部署的项目名，建议项目有统一的前缀名，方便部署时简化输入，前缀名可以在
 bootstrap.sh的 PROJ_PREFIX 中设置
 3. 每个 项目都在lib/env.sh下单独配置如下：
-    # 针对单个项目的配置git地址
+    ### 针对单个项目的配置git地址
     GIT_REPOSITORY=""
-    # 针对单个项目的部署tomcat名
+    ### 针对单个项目的部署tomcat名
     TOMCAT_NAME=""
-    # 一般是项目的target目录，用来获得编译后的war包
+    ### 一般是项目的target目录，用来获得编译后的war包
     WEB_PATH=""
