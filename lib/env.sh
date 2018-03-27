@@ -3,7 +3,7 @@
 # 自定义脚本运行过程中产生的中间数据根目录
 BASE_HOME=""
 
-PROJECT_NAME="${PROJ_PREFIX}${PROJECT_NAME}"
+PROJECT_NAME="${PROJ_PREFIX}${PROJECT_NAME}${PROJ_SUFFIX}"
 
 MAX_BACKUP=10
 # web容器启动最大时间

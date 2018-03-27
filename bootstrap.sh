@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # 用于指定运行脚本的用户，非该用户无法使用
-RUNNER=""
+RUNNER="zhoushengfan"
 PROJ_PREFIX=""
+PROJ_SUFFIX=""
 
 check_user(){
     cur_user=$(id -nu)
@@ -12,9 +13,10 @@ check_user(){
     fi
 }
 
+
 print_console() {
     if [[ "$ACTION" == "rollback" ]]; then
-    echo -e "当前执行:[${REDTXTCOLOR} ${PROJECT_NAME} ${TXTCOLOREND}]项目的:[${YELLOWCOLOR} ${ACTION} ${TXTCOLOREND}]命令, 回滚版本(倒序):[${ORANGECOLOR} ${BRANCH} ${TXTCOLOREND}] 请确认! [y/n] "
+    echo -e "当前执行:[${REDTXTCOLOR} ${PROJECT_NAME} ${TXTCOLOREND}]项目的:[${YELLOWCOLOR} ${ACTION} ${TXTCOLOREND}]命令, 回滚版本(倒序):[${ORANGECOLOR} ${VERSION} ${TXTCOLOREND}] 请确认! [y/n] "
     elif [[ "$ACTION" == "push" ]]; then
         if [[ $BRANCH != "-r"  ]]; then
             echo -e "当前执行:[${REDTXTCOLOR} ${PROJECT_NAME} ${TXTCOLOREND}]项目的:[${YELLOWCOLOR} ${ACTION} ${TXTCOLOREND}]命令, 代码分支:[${ORANGECOLOR} ${BRANCH} ${TXTCOLOREND}], 远程主机:[${YELLOWCOLOR} ${REMOTE_HOST} ${TXTCOLOREND}], 远程目录:[${GREENCOLOR} ${REMOTE_PATH} ${TXTCOLOREND}] 请确认! [y/n] "
@@ -31,11 +33,19 @@ print_console() {
 . lib/welcome.sh
 
 readonly SCRIPT_NAME=$0
-PROJECT_NAME=$1
-readonly ACTION=$2
-readonly BRANCH=$3
-readonly REMOTE_HOST=$4
-readonly REMOTE_PATH=$5
+# PROJECT_NAME=$1
+# readonly ACTION=$2
+# readonly BRANCH=$3
+# readonly VERSION=$BRANCH
+# readonly REMOTE_HOST=$4
+# readonly REMOTE_PATH=$5
+
+PROJECT_NAME=
+ACTION=
+BRANCH=
+VERSION=
+REMOTE_HOST=
+REMOTE_PATH=
 
 check_user
 
@@ -44,7 +54,13 @@ if [[ $PROJ_PREFIX != "" && $PROJECT_NAME =~ $PROJ_PREFIX ]]; then
     exit
 fi
 
+if [[ $PROJ_SUFFIX != "" && $PROJECT_NAME =~ $PROJ_SUFFIX ]]; then
+    echo -e "\033[31m 工程名不能包含后缀 [${PROJ_SUFFIX}] \033[0m"
+    exit
+fi
+
 . lib/env.sh
+. lib/param.sh
 
 project_check
 
@@ -88,7 +104,7 @@ case "$ACTION" in
         push $REMOTE_HOST $REMOTE_PATH
     ;;
     deploy)
-        deploy $3
+        deploy $BRANCH
         terminate
 	    startup
     ;;
