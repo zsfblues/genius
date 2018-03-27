@@ -17,35 +17,40 @@
 
 该脚本主要有以下几个命令
 1) run
-也是最全的命令，包含 git 更新，maven编译以及后续的项目部署，web 容器启动
-<br>
+也是最全的命令，包含 git 更新，maven编译以及后续的项目部署，web 容器启动  
+
 usage:
-sh bootstrap.sh -p 项目名 -a run -b 分支名 
+sh bootstrap.sh -p 项目名 -a run -b 分支名  
+
 2) push
-该命令会在拉取更新后将项目推送到指定远程主机的指定目录(目录非必填项)
-<br>
+该命令会在拉取更新后将项目推送到指定远程主机的指定目录(目录非必填项)  
+
 usage：
-sh bootstrap.sh -p 项目名 -a push -b 分支名  -h ip[:-t 目录全路径(非必填，有默认推送路径)]
-<br>
-sh bootstrap.sh -p 项目名 -a push -r 不再重新拉取更新编译，直接将原先 target 目录中的 war 进行发送
+sh bootstrap.sh -p 项目名 -a push -b 分支名  -h ip[:-t 目录全路径(非必填，有默认推送路径)]  
+
+sh bootstrap.sh -p 项目名 -a push -r 不再重新拉取更新编译，直接将原先 target 目录中的 war 进行发送  
+
 3) deploy
-该命令会将编译后好的war包进行部署(你也可以选择非war部署，可修改lib/env.sh 下IS_DEPLOY_WAY_WAR)
-<br>
+该命令会将编译后好的war包进行部署(你也可以选择非war部署，可修改lib/env.sh 下IS_DEPLOY_WAY_WAR)  
+
 usage：
-sh bootstrap.sh -p 项目名 -a deploy -d [目录全路径(非必填，主要和push命令结合使用)]
+sh bootstrap.sh -p 项目名 -a deploy -d [目录全路径(非必填，主要和push命令结合使用)]  
+
 4) restart
-重启 web 容器
-<br>
+重启 web 容器  
+
 usage：
-sh bootstrap.sh -p 项目名 -a restart
+sh bootstrap.sh -p 项目名 -a restart  
+
 5) backup
-备份当前项目
-<br>
+备份当前项目  
+
 usage：
-sh bootstrap.sh -p 项目名 -a backup
+sh bootstrap.sh -p 项目名 -a backup  
+
 6) rollback
-根据项目的历史备份进行版本回滚
-<br>
+根据项目的历史备份进行版本回滚  
+
 usage：
 sh bootstrap.sh -p 项目名 -a rollback -n 数字(比如1代表最后一次备份版本，2代表倒数第二次备份版本，以此类推...)
 
