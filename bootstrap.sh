@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 用于指定运行脚本的用户，非该用户无法使用
-RUNNER="zhoushengfan"
+RUNNER=""
 PROJ_PREFIX=""
 PROJ_SUFFIX=""
 
